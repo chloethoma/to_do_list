@@ -1,38 +1,18 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+	import Task from './task.svelte';
 	export let taskList;
 
 	const dispatch = createEventDispatcher();
 
-	function deleteTask (task) {
-		dispatch ('delete', task);
+	function deleteTask (event) {
+		dispatch('delete', event.detail)
 	}
 
 </script>
 
 {#each taskList as task}
-	<div class="task">
-		<input type="checkbox" />
-		<div class="taskName">{task}</div>
-		<button on:click={() => deleteTask({task})}>X</button>
-	</div>
+<Task task={task} on:delete={deleteTask} />
 {/each}
 
-<style>
-	.task {
-		display: grid;
-		grid-template-columns: repeat(10, minmax(min-content, 30px));
-	}
-
-	input {
-		grid-column: 1/2;
-	}
-
-	.taskName {
-		grid-column: 2/10;
-	}
-
-	button {
-		grid-column: 10;
-	}
-</style>
+<!-- {JSON.stringify(task)} -->
