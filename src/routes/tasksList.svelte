@@ -1,5 +1,12 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
 	export let taskList;
+
+	const dispatch = createEventDispatcher();
+
+	function deleteTask (task) {
+		dispatch ('delete', task);
+	}
 
 </script>
 
@@ -7,7 +14,7 @@
 	<div class="task">
 		<input type="checkbox" />
 		<div class="taskName">{task}</div>
-		<button>X</button>
+		<button on:click={() => deleteTask({task})}>X</button>
 	</div>
 {/each}
 

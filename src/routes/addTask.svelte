@@ -6,6 +6,7 @@
 
 	const sendMessageForNewTask = () => {
 		dispatch('message',{inputValue});
+		inputValue='';
 	};
 </script>
 

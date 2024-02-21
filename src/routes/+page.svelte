@@ -6,13 +6,17 @@
     let taskList = []
 
     function addNewTask (event) {
-        let newTask = event.detail.inputValue
-        taskList = [...taskList, newTask]
+        let newTask = event.detail.inputValue;
+        taskList = [...taskList, newTask];
+    }
+
+    function deleteTask (event) {
+        taskList = taskList.filter ((t) => t !== event.detail.task);
     }
 
 </script>
 
 <Header />
-<TasksList taskList={taskList}/>
+<TasksList taskList={taskList} on:delete={deleteTask}/>
 <AddTask on:message={addNewTask} />
 
